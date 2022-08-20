@@ -1,3 +1,5 @@
+using myfinance_web_netcore.Infra;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,4 +26,15 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+CreateDalInstance(app);
+
 app.Run();
+
+void CreateDalInstance(WebApplication app)
+{
+    IConfiguration configuration = app.Configuration;
+    DAL.Configuration = configuration;
+    var objDAL = DAL.GetInstance;
+    // objDAL.Connect();
+    // objDAL.ExecuteSqlCommand("INSERT INTO PLANO_CONTAS(DESCRICAO, TIPO) VALUES('Luz', 'D'");
+}
