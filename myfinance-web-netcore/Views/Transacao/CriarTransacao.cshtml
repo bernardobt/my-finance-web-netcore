@@ -1,0 +1,80 @@
+@using System.Globalization
+@model TransacaoModel
+
+@{
+    ViewData["Title"] = "Registro de Transação Financeira";
+
+    var vData = "";
+    var vDescricao = "";
+    var vTipo = "";
+    var vValor = "";
+    var vId = 0;
+    var vPlanoContaId = 0;
+
+    try
+    {
+        vId = int.Parse(@ViewBag.Registro.Id.ToString());
+        vData = DateTime.Parse(@ViewBag.Registro.Data.ToString()).ToString("yyyy-MM-dd");
+        vPlanoContaId = int.Parse(@ViewBag.Registro.IdPlanoConta.ToString());
+        vDescricao = @ViewBag.Registro.Historico.ToString();
+        vTipo = @ViewBag.Registro.Tipo.ToString();
+
+        CultureInfo invC = CultureInfo.InvariantCulture;
+        string value;
+        value = @ViewBag.Registro.Valor.ToString(invC);
+        vValor = value;
+    }
+    catch { }
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-controller="Transacao" asp-action="CriarTransacao">
+    <input type="text" asp-for="Id"><br>
+
+    <div class="form-group">
+        <lable>Data:</lable>
+        <input type="date" asp-for="Data" value="@vData" class="form-control">
+        <span asp-validation-for="Data" class="text-danger"></span></span>
+    </div>
+
+    <div class="form-group">
+        <lable>Tipo:</lable>
+        <input type="text" asp-for="Tipo" class="form-control" value="@vTipo">
+        <span asp-validation-for="Data" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <lable>Valor:</lable>
+        <input type="text" asp-for="Valor" value="@vValor" step="0.01" class="form-control">
+        <span asp-validation-for="Valor" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <lable>Histórico:</lable>
+        @Html.TextArea("Historico", vDescricao, new { @class = "form-control" })
+        <span asp-validation-for="Historico" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <lable>Plano Contas:</lable>
+        <select asp-for="IdPlanoConta" class="form-control">
+            @{
+                foreach (var item in (List<PlanoContaModel>)ViewBag.ListaPlanoContas)
+                {
+                    if (item.Id.ToString() == vPlanoContaId.ToString())
+                    {
+                        <option selected value="@item.Id.ToString()">@item.Descricao.ToString()</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id.ToString()">@item.Descricao.ToString()</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-block btn-success">Registrar</button>
+
+</form>
