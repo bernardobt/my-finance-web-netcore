@@ -16,7 +16,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <form asp-controller="PlanoConta" asp-action="CriarPlanoConta">
-    <input type="text" asp-for="Id"><br>
+    <input type="hidden" asp-for="Id">
 
     <label for="fname">Descrição:</label><br>
     <input type="text" asp-for="Descricao" value=@vDescricao><br>
