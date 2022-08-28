@@ -32,31 +32,38 @@
 <form asp-controller="Transacao" asp-action="CriarTransacao">
     <input type="hidden" asp-for="Id">
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         <lable>Data:</lable>
         <input type="date" asp-for="Data" value="@vData" class="form-control">
         <span asp-validation-for="Data" class="text-danger"></span></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         <lable>Tipo:</lable>
         <input type="text" asp-for="Tipo" class="form-control" value="@vTipo">
         <span asp-validation-for="Data" class="text-danger"></span>
+        <div class="btn-group text-capitalize mb-3 " role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+            <label class="btn btn-outline-danger" for="btnradio1">débito</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+            <label class="btn btn-outline-success" for="btnradio2">crédito</label>
+        </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         <lable>Valor:</lable>
         <input type="text" asp-for="Valor" value="@vValor" step="0.01" class="form-control">
         <span asp-validation-for="Valor" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         <lable>Histórico:</lable>
         @Html.TextArea("Historico", vDescricao, new { @class = "form-control" })
         <span asp-validation-for="Historico" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
         <lable>Plano Contas:</lable>
         <select asp-for="IdPlanoConta" class="form-control">
             @{
@@ -75,6 +82,6 @@
         </select>
     </div>
 
-    <button type="submit" class="btn btn-block btn-success">Registrar</button>
+    <button type="submit" class="btn btn-block btn-primary mb-3">Registrar</button>
 
 </form>
