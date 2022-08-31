@@ -35,20 +35,20 @@
     <div class="form-group mb-3">
         <lable>Data:</lable>
         <input type="date" asp-for="Data" value="@vData" class="form-control">
-        <span asp-validation-for="Data" class="text-danger"></span></span>
+        <span asp-validation-for="Data" class="text-danger"></span>
     </div>
 
     <div class="form-group mb-3">
         <lable>Tipo:</lable>
         <input type="text" asp-for="Tipo" class="form-control" value="@vTipo">
         <span asp-validation-for="Data" class="text-danger"></span>
-        <div class="btn-group text-capitalize mb-3 " role="group" aria-label="Basic radio toggle button group">
+        @* <div class="btn-group text-capitalize mb-3 " role="group" aria-label="Basic radio toggle button group">
             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
             <label class="btn btn-outline-danger" for="btnradio1">débito</label>
 
             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
             <label class="btn btn-outline-success" for="btnradio2">crédito</label>
-        </div>
+            </div> *@
     </div>
 
     <div class="form-group mb-3">

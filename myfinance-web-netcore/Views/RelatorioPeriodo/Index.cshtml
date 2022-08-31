@@ -1,0 +1,65 @@
+﻿@model RelatorioPeriodoModel
+
+@{
+    ViewData["Title"] = "Relatório de Transações Por Período";
+}
+
+
+<h3>@ViewData["Title"]</h3>
+<hr>
+
+<form asp-controller="RelatorioPeriodo" asp-action="Index" method="get">
+    <div class="row mt-3 input-group">
+
+        <div class="col">
+            <label>Início:</label>
+            <input id="inicio" type="date" asp-for="DataInicio" name="DataInicio" class="form-control" required>
+            <span asp-validation-for="DataInicio" class="text-danger"></span>
+        </div>
+
+        <div class="col">
+            <label>Fim:</label>
+            <input id="fim" type="date" asp-for="DataFim" name="DataFim" class="form-control" required>
+            <span asp-validation-for="DataFim" class="text-danger"></span>
+        </div>
+        <div class="col align-self-end">
+            <button type="submit" class="btn btn-block btn-primary float-end">Filtrar</button>
+        </div>
+    </div>
+
+</form>
+<hr>
+
+
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<hr>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>const ctx = document.getElementById('myChart').getContext('2d');
+    if (@ViewBag.list[0] > 0 || @ViewBag.list[1] > 0) {
+        const myChart = new Chart(
+            ctx,
+            {
+                type: 'pie',
+                data: {
+                    labels: ['Despesas', 'Receitas'],
+                    datasets: [{
+                        label: '# of Votes', data: [@ViewBag.list[0], @ViewBag.list[1]],
+                        backgroundColor: ['red', 'green'],
+                        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options:
+                {
+                    scales:
+                    {
+                        y:
+                            { beginAtZero: true }
+                    }
+                }
+            });
+    }
+</script>

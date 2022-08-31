@@ -32,7 +32,7 @@ namespace myfinance_web_netcore.Domain
             $"Valor = {formulario.Valor}," +
             $"Tipo = '{formulario.Tipo}'," +
             $"Historico = '{formulario.Historico}'," +
-            $"ID_PLANO_CONTA = {formulario.IdPlanoConta}" +
+            $"ID_PLANO_CONTA = {formulario.IdPlanoConta} " +
             $"WHERE ID = {formulario.Id}";
 
             objDAL.ExecuteSqlCommand(sql);

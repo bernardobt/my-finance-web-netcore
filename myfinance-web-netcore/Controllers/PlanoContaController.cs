@@ -15,8 +15,8 @@ namespace myfinance_web_netcore.Controllers
 
         public IActionResult Index()
         {
-            var planoContasModel = new PlanoConta();
-            ViewBag.list = planoContasModel.ListaPlanoContas();
+            var planoContas = new PlanoConta();
+            ViewBag.list = planoContas.ListaPlanoContas();
             return View();
         }
 
