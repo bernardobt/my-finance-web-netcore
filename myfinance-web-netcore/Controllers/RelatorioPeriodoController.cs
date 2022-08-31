@@ -14,7 +14,7 @@ namespace myfinance_web_netcore.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string DataInicio = "1/1/2022", string DataFim = "1/31/2022")
+        public IActionResult Index(string DataInicio = "1/1/0001", string DataFim = "1/31/0001")
         {
             var relatorio = new RelatorioPeriodo();
             ViewBag.List = relatorio.ListaRelatorios(DataInicio, DataFim);

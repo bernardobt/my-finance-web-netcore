@@ -41,9 +41,6 @@ insert into transacao(data, valor, tipo, historico, id_plano_conta)
 	values (getdate()-10, 10000.00, 'C', 'Sal�rio Empresa X', 2);
 
 
-
-use my_finance
-
 SELECT sum(valor) as both
 FROM transacao
 WHERE  data BETWEEN  '1/1/2022' AND '1/31/2022';
@@ -55,3 +52,7 @@ WHERE  tipo = 'D' AND  data BETWEEN  '1/1/2022' AND '1/31/2022';
 SELECT sum(valor) as receita
 FROM transacao
 WHERE  tipo = 'R' AND  data BETWEEN  '1/1/2022' AND '1/31/2022';
+
+
+SELECT(SELECT COALESCE(sum(valor), 0) from transacao t where t.TIPO = 'D' and [DATA] >= '1/1/2021' and [DATA] <= '1/31/2021' ) as sum_despesas,
+(SELECT COALESCE(sum(valor), 0) from transacao t where t.TIPO = 'R' and [DATA] >= '1/1/2021' and [DATA] <= '1/31/2021') as sum_receita
