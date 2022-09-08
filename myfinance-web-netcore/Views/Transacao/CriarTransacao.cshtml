@@ -82,6 +82,15 @@
         </select>
     </div>
 
-    <button type="submit" class="btn btn-block btn-primary mb-3">Registrar</button>
+    <div>
+        <button type="submit" class="btn btn-block btn-primary mb-3">Registrar</button>
+        <button type="button" class="btn btn-block btn-secondary mb-3" onclick="Cancelar()">Cancelar</button>
+    </div>
 
 </form>
+
+<script>
+    function Cancelar() {
+        window.location.href = "../Transacao";
+    }
+</script>
