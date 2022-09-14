@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using myfinance_web_netcore.Infra;
 using myfinance_web_netcore.Models;
 
@@ -52,6 +53,28 @@ namespace myfinance_web_netcore.Domain
                     Id = int.Parse(dataTable.Rows[i]["ID"].ToString()),
                     Descricao = dataTable.Rows[i]["DESCRICAO"].ToString(),
                     Tipo = dataTable.Rows[i]["TIPO"].ToString()
+                };
+
+                list.Add(planoConta);
+            }
+            objDAL.Disconnect();
+            return list;
+        }
+        public List<SelectListItem> ListaSelectItemPlanoContas()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var objDAL = DAL.GetInstance;
+            objDAL.Connect();
+
+            var sql = "SELECT ID, DESCRICAO, TIPO FROM PLANO_CONTAS";
+            var dataTable = objDAL.ReturnDataTable(sql);
+
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                var planoConta = new SelectListItem()
+                {
+                    Value = dataTable.Rows[i]["ID"].ToString(),
+                    Text = dataTable.Rows[i]["DESCRICAO"].ToString()
                 };
 
                 list.Add(planoConta);

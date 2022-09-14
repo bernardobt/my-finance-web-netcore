@@ -23,14 +23,15 @@ namespace myfinance_web_netcore.Controllers
         [HttpGet]
         public IActionResult CriarTransacao(int? id)
         {
+            var model = new TransacaoModel();
             if (id != null)
             {
                 var transacao = new Transacao().CarregarTransacaoPorId(id);
-                ViewBag.Registro = transacao;
+                model = transacao;
             }
 
-            ViewBag.ListaPlanoContas = new PlanoConta().ListaPlanoContas();
-            return View();
+            model.PlanoContas = new PlanoConta().ListaSelectItemPlanoContas();
+            return View(model);
         }
         [HttpPost]
         public IActionResult CriarTransacao(TransacaoModel formulario)
