@@ -1,5 +1,4 @@
 create database my_finance;
-
 use my_finance;
 
 create table plano_contas(
@@ -12,7 +11,7 @@ create table plano_contas(
 
 create table transacao(
 	id bigint identity (1, 1) not null,
-	data datetime not null,
+	data date not null,
 	valor decimal(18,2) not null,
 	tipo char(1) not null,
 	historico text null,
@@ -22,37 +21,22 @@ create table transacao(
 	foreign key(id_plano_conta) references plano_contas
 );
 
--- Inser�ao de alguns exemplos
+-- Alguns Exemplos
 
-insert into plano_contas(descricao, tipo) values ('Aluguel', 'D');
-insert into plano_contas(descricao, tipo) values ('Alimenta��o', 'D');
-insert into plano_contas(descricao, tipo) values ('Combust�vel', 'D');
-insert into plano_contas(descricao, tipo) values ('Viagens', 'D');
-insert into plano_contas(descricao, tipo) values ('Sal�rio', 'C');
-
-
-insert into transacao(data, valor, tipo, historico, id_plano_conta)
-	values ('2022-08-11 21:35:00', 100.47, 'D', 'Gasolina para viagem', 3);
-insert into transacao(data, valor, tipo, historico, id_plano_conta)
-	values ('2022-08-11 21:35:00', 48.32, 'D', 'Almo�o', 2);
-insert into transacao(data, valor, tipo, historico, id_plano_conta)
-	values (getdate()-1, 35.87, 'D', 'Almo�o', 2);
-insert into transacao(data, valor, tipo, historico, id_plano_conta)
-	values (getdate()-10, 10000.00, 'C', 'Sal�rio Empresa X', 2);
+insert into plano_contas(descricao, tipo) values ('Salário', 'C');
+insert into plano_contas(descricao, tipo) values ('Condomínio', 'D');
+insert into plano_contas(descricao, tipo) values ('Alimentação', 'D');
+insert into plano_contas(descricao, tipo) values ('Combustível', 'D');
+insert into plano_contas(descricao, tipo) values ('Compra', 'D');
+insert into plano_contas(descricao, tipo) values ('Conta', 'D');
+insert into plano_contas(descricao, tipo) values ('Mensalidade', 'D');
 
 
-SELECT sum(valor) as both
-FROM transacao
-WHERE  data BETWEEN  '1/1/2022' AND '1/31/2022';
-
-SELECT sum(valor) as despesa
-FROM transacao
-WHERE  tipo = 'D' AND  data BETWEEN  '1/1/2022' AND '1/31/2022';
-
-SELECT sum(valor) as receita
-FROM transacao
-WHERE  tipo = 'R' AND  data BETWEEN  '1/1/2022' AND '1/31/2022';
-
-
-SELECT(SELECT COALESCE(sum(valor), 0) from transacao t where t.TIPO = 'D' and [DATA] >= '1/1/2021' and [DATA] <= '1/31/2021' ) as sum_despesas,
-(SELECT COALESCE(sum(valor), 0) from transacao t where t.TIPO = 'R' and [DATA] >= '1/1/2021' and [DATA] <= '1/31/2021') as sum_receita
+INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-01', 5000.00, 'R', 'Salário Empresa X', 1); 
+INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-05', 96.49, 'D', 'Copasa', 6);
+INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-05', 114.73, 'D', 'Cemig', 6);
+INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-09', 280.00, 'D', 'Condomínio', 6);
+INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-10', 478.00, 'D', 'Supermercado', 5);
+INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-15', 200.00, 'D', 'Gasolina', 4);
+INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-15', 270.00, 'D', 'Escola', 7);
+INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-15', 260.00, 'D', 'Pilates', 7);
