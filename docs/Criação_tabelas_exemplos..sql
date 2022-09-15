@@ -1,35 +1,34 @@
-create database my_finance;
 use my_finance;
 
-create table plano_contas(
-	id int identity(1, 1) not null,
-	descricao varchar(50) not null,
-	tipo char(1) not null,
+CREATE TABLE plano_contas(
+	id int identity(1, 1) NOT NULL,
+	descricao varchar(50) NOT NULL,
+	tipo char(1) NOT NULL,
 
-	primary key(id)
+	PRIMARY KEY(id)
 );
 
-create table transacao(
-	id bigint identity (1, 1) not null,
-	data date not null,
-	valor decimal(18,2) not null,
-	tipo char(1) not null,
-	historico text null,
-	id_plano_conta int not null,
+CREATE TABLE transacao(
+	id bigint identity (1, 1) NOT NULL,
+	data date NOT NULL,
+	valor decimal(18,2) NOT NULL,
+	tipo char(1) NOT NULL,
+	historico text NULL,
+	id_plano_conta int NOT NULL,
 
-	primary key(id),
-	foreign key(id_plano_conta) references plano_contas
+	PRIMARY KEY(id),
+	FOREIGN KEY(id_plano_conta) references plano_contas
 );
 
 -- Alguns Exemplos
 
-insert into plano_contas(descricao, tipo) values ('Salário', 'C');
-insert into plano_contas(descricao, tipo) values ('Condomínio', 'D');
-insert into plano_contas(descricao, tipo) values ('Alimentação', 'D');
-insert into plano_contas(descricao, tipo) values ('Combustível', 'D');
-insert into plano_contas(descricao, tipo) values ('Compra', 'D');
-insert into plano_contas(descricao, tipo) values ('Conta', 'D');
-insert into plano_contas(descricao, tipo) values ('Mensalidade', 'D');
+INSERT INTO plano_contas(descricao, tipo) VALUES ('Salário', 'C');
+INSERT INTO plano_contas(descricao, tipo) VALUES ('Condomínio', 'D');
+INSERT INTO plano_contas(descricao, tipo) VALUES ('Alimentação', 'D');
+INSERT INTO plano_contas(descricao, tipo) VALUES ('Combustível', 'D');
+INSERT INTO plano_contas(descricao, tipo) VALUES ('Compra', 'D');
+INSERT INTO plano_contas(descricao, tipo) VALUES ('Conta', 'D');
+INSERT INTO plano_contas(descricao, tipo) VALUES ('Mensalidade', 'D');
 
 
 INSERT INTO transacao(data, valor, tipo, historico, id_plano_conta) VALUES ('2022-09-01', 5000.00, 'R', 'Salário Empresa X', 1); 

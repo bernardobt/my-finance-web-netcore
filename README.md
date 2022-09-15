@@ -52,6 +52,17 @@ Diagrama de Entidades e Relacionamentos que representa o esquema lógico do banc
 # Como utilizar
 
 - Clonar o repositório.
+
+- Preparar o Banco de Dados
+
+- Criar o Banco com:
+
+```
+CREATE DATABASE my_finance;
+```
+
+- Rodar o Script SQL [Criação_tabelas_exemplos](https://github.com/bernardobt/my-finance-web-netcore/blob/main/docs/Cria%C3%A7%C3%A3o_tabelas_exemplos..sql) que se encontra na pasta docs
+
 - Atualizar o arquivo _appsettings.json_ com a [string de conexão](https://www.connectionstrings.com/sql-server/) mais adequada para conectar ao banco de dados.
 
 <img src='docs\exemplo-string-conexao.png' alt='String Conexão'>
