@@ -44,10 +44,15 @@ Diagrama de Entidades e Relacionamentos que representa o esquema lógico do banc
 <img src='docs\historico-transacoes.png' alt='Histórico Transações' height="200">
 <img src='docs\planos-de-conta.png' alt='Planos de Conta' height="200">
 
-### Pontos para Evolução
+# Pontos para Evolução
+
+- Fazer validações mais robustas, como exigir que a data final seja, de fato, posterior a data de início.
 
 - Mostrar uma descrição no lugar do código nas colunas "Plano de Contas" (em transações) e "Tipo" (em plano de contas), através de algumas novas tabelas no Banco de Dados.
+
 - Refatorar algumas partes do código para aproveitar melhor as funcionalidades do Razor.
+
+- Implementação de testes automatizados
 
 # Como utilizar
 
@@ -55,13 +60,13 @@ Diagrama de Entidades e Relacionamentos que representa o esquema lógico do banc
 
 - Preparar o Banco de Dados
 
-- Criar o Banco com:
+  - Criar o Banco com:
 
-```
-CREATE DATABASE my_finance;
-```
+    ```
+    CREATE DATABASE my_finance;
+    ```
 
-- Rodar o Script SQL [Criação_tabelas_exemplos](https://github.com/bernardobt/my-finance-web-netcore/blob/main/docs/Cria%C3%A7%C3%A3o_tabelas_exemplos..sql) que se encontra na pasta docs
+- Rodar o Script SQL [Criação_tabelas_exemplos](https://github.com/bernardobt/my-finance-web-netcore/blob/main/docs/Cria%C3%A7%C3%A3o_tabelas_exemplos..sql) que se encontra na pasta docs para criação das tabelas e populálas com alguns exemplos.
 
 - Atualizar o arquivo _appsettings.json_ com a [string de conexão](https://www.connectionstrings.com/sql-server/) mais adequada para conectar ao banco de dados.
 
